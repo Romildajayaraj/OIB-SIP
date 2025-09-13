@@ -3,118 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - My Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <title>🌡️ Temperature Converter</title>
   <style>
     body {
+      font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0db9d8, #add41f, #f51717);
-      color:black;
-    }
-   .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
-  min-height: 100vh; /* full screen */
-  padding-top: 50px; /* ✅ move them a bit down */
-}
-    .home img {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: top;
-      border: 5px solid #f0e8c6;
-      box-shadow: 0 0 25px #32cf81, 
-                  0 0 50px #b6d407, 
-                  0 0 75px #f00808;
-      transition: transform 0.5s ease-in-out;
+      background: linear-gradient(135deg, #f10505,  #eb520b,  #67dddd,  #8cc409,  #6710d8,  #f453fa, #1e6add);
+      color: #333;
     }
 
-    /* ✅ Zoom hover effect */
-    .home img:hover {
-      transform: scale(1.05);
-    }
-
-    /* ✅ Typewriter Effect */
-    .typewriter h1 {
-      font-size: 35px;
-      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      margin-bottom: 15px;
-      border-right: 3px solid #b5d9db;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 10px;
-      animation: typing 4s steps(30, end) forwards,
-                 blink 0.75s step-end infinite;
-    }
-    
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    .typewriter h1 span {
-      color:brown;
+    /* Top Bar */
+    .navbar {
+      background: #222;
+      color: white;
+      padding: 15px 20px;
+      font-size: 20px;
       font-weight: bold;
+      text-align: center;
+      letter-spacing: 1px;
     }
 
-    /* ✅ Normal fade-in for paragraphs */
-    .typewriter p {
-      font-size: 25px;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      line-height: 1.8;
-      max-width: 600px;
-      text-align: justify;
-      color: black;
-      opacity: 0;
-      animation: fadeIn 2s ease-in forwards;
+    /* Main Layout */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 30px;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
     }
 
-    .typewriter p:nth-child(2) { animation-delay: 1s; }
-    .typewriter p:nth-child(3) { animation-delay: 2s; }
-    .typewriter p:nth-child(4) { animation-delay: 3s; }
+    /* Converter Card */
+    .converter {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 100%;
+      animation: fadeIn 0.8s ease-in-out;
+    }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #222;
+      font-size: 24px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      font-size: 16px;
+      margin: 8px 0;
+      outline: none;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .convert-btn {
+      background: #3a7bd5;
+      color: white;
+    }
+    .convert-btn:hover {
+      background: #2a5da3;
+    }
+
+    .swap-btn {
+      background: #ff9800;
+      color: white;
+    }
+    .swap-btn:hover {
+      background: #e67e00;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f1f9ff;
+      border: 1px solid #ddd;
+    }
+
+    .info-box {
+      margin-top: 18px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      font-size: 14px;
+      text-align: left;
+      color: #444;
+      border-left: 5px solid #3a7bd5;
+    }
+
+    /* Explanations Section */
+    .explanation {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      line-height: 1.6;
+    }
+
+    .explanation h3 {
+      margin-top: 0;
+      color: #3a7bd5;
+    }
+
+    .explanation p {
+      margin: 8px 0;
     }
   </style>
 </head>
 <body>
+  <!-- Top Bar -->
   <div class="navbar">
-    <a href="index.html">Home</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="education.html">Education</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="skills.html">Skills</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="certification.html">Certification</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="internship.html">Internship</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="workshop.html">Workshop</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="project.html">Project</a>
-    <img src="images/arr.gif" class="img" alt="arrow">
-    <a href="activities.html">Activities</a>
+    🌐 Temperature Converter Project
   </div>
 
-  <section class="home">
-    <img src="images/pic.jpg" alt="My Photo">
-    <div class="typewriter">
-      <h1>Hello, I'm <span>J. Romilda Antony.</span></h1>
-      <p>I am a passionate web developer who loves building interactive websites.</p>
-      <p>I’m excited to bring my strong analytical skills and quick-learning ability to a supportive team.</p> 
-      <p>My objective is to grow professionally, contribute fresh ideas, and help the organization succeed.</p>
+  <div class="container">
+    <!-- Converter -->
+    <div class="converter">
+      <h2>🌡️ Temperature Converter</h2>
+
+      <input type="number" id="inputTemp" placeholder="Enter temperature">
+
+      <select id="inputUnit">
+        <option value="Celsius">Celsius (°C)</option>
+        <option value="Fahrenheit">Fahrenheit (°F)</option>
+        <option value="Kelvin">Kelvin (K)</option>
+      </select>
+
+      <select id="outputUnit">
+        <option value="Celsius">Celsius (°C)</option>
+        <option value="Fahrenheit">Fahrenheit (°F)</option>
+        <option value="Kelvin">Kelvin (K)</option>
+      </select>
+
+      <div class="actions">
+        <button class="convert-btn" onclick="convertTemp()">Convert</button>
+        <button class="swap-btn" onclick="swapUnits()">🔄 Swap</button>
+      </div>
+
+      <div class="result" id="result">Result will appear here</div>
+
+      <div class="info-box">
+        <h3>📘 Conversion Formulas:</h3>
+        <ul>
+          <li>°F = (°C × 9/5) + 32</li>
+          <li>°C = (°F − 32) × 5/9</li>
+          <li>K = °C + 273.15</li>
+        </ul>
+      </div>
     </div>
-  </section>
+
+    <!-- Explanation Section -->
+    <div class="explanation">
+      <h3>ℹ️ About Temperature Scales</h3>
+      <p><b>🌡 Celsius (°C):</b> Based on the freezing point (0°C) and boiling point (100°C) of water at sea level.</p>
+      <p><b>🔥 Fahrenheit (°F):</b> Commonly used in the USA. Water freezes at 32°F and boils at 212°F.</p>
+      <p><b>❄ Kelvin (K):</b> Scientific scale used worldwide. Absolute zero (0 K) is the coldest possible temperature.</p>
+      <p>👉 This converter helps you switch easily between these units for daily, academic, and scientific use.</p>
+    </div>
+  </div>
+
+  <script>
+    function convertTemp() {
+      let temp = parseFloat(document.getElementById("inputTemp").value);
+      let inputUnit = document.getElementById("inputUnit").value;
+      let outputUnit = document.getElementById("outputUnit").value;
+      let result = document.getElementById("result");
+      let converted;
+
+      if (isNaN(temp)) {
+        result.innerHTML = "⚠️ Please enter a valid number!";
+        result.style.background = "#ffecec";
+        result.style.color = "#d32f2f";
+        return;
+      }
+
+      // Convert input to Celsius first
+      let celsius;
+      if (inputUnit === "Celsius") {
+        celsius = temp;
+      } else if (inputUnit === "Fahrenheit") {
+        celsius = (temp - 32) * 5 / 9;
+      } else if (inputUnit === "Kelvin") {
+        celsius = temp - 273.15;
+      }
+
+      // Convert Celsius to target unit
+      if (outputUnit === "Celsius") {
+        converted = celsius;
+      } else if (outputUnit === "Fahrenheit") {
+        converted = (celsius * 9 / 5) + 32;
+      } else if (outputUnit === "Kelvin") {
+        converted = celsius + 273.15;
+      }
+
+      result.innerHTML = `✅ ${temp} ${inputUnit} = ${converted.toFixed(2)} ${outputUnit}`;
+      result.style.background = "#e3fcec";
+      result.style.color = "#2e7d32";
+    }
+
+    function swapUnits() {
+      let inputUnit = document.getElementById("inputUnit");
+      let outputUnit = document.getElementById("outputUnit");
+
+      // Swap selected values
+      let tempUnit = inputUnit.value;
+      inputUnit.value = outputUnit.value;
+      outputUnit.value = tempUnit;
+    }
+  </script>
 </body>
 </html>
