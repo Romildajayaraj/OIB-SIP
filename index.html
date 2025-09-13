@@ -1,248 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌡️ Temperature Converter</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pet Adoption</title>
   <style>
+    html {
+  scroll-behavior: smooth;
+}
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #f10505,  #eb520b,  #67dddd,  #8cc409,  #6710d8,  #f453fa, #1e6add);
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
     }
 
-    /* Top Bar */
-    .navbar {
-      background: #222;
-      color: white;
-      padding: 15px 20px;
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
-      letter-spacing: 1px;
+    nav {
+  background-color: black;
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box; /* ✅ ensures padding is included in the width */
+}
+
+nav h1 {
+      margin: 0;
+      font-size: 40px;
+      font-family: cursive;
     }
 
-    /* Main Layout */
-    .container {
+    nav ul {
+      list-style: none;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 30px;
-      padding: 30px;
-      max-width: 800px;
-      margin: auto;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Converter Card */
-    .converter {
-      background: white;
-      padding: 25px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      text-align: center;
-      width: 100%;
-      animation: fadeIn 0.8s ease-in-out;
+    nav ul li {
+      position: relative;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    h2 {
-      margin-bottom: 15px;
-      color: #222;
-      font-size: 24px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #bbb;
-      border-radius: 8px;
-      font-size: 16px;
-      margin: 8px 0;
-      outline: none;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      margin: 12px 0;
-    }
-
-    button {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
-
-    button:active {
-      transform: scale(0.95);
-    }
-
-    .convert-btn {
-      background: #3a7bd5;
-      color: white;
-    }
-    .convert-btn:hover {
-      background: #2a5da3;
-    }
-
-    .swap-btn {
-      background: #ff9800;
-      color: white;
-    }
-    .swap-btn:hover {
-      background: #e67e00;
-    }
-
-    .result {
-      margin-top: 15px;
+    nav ul li a {
+      color: navy;
+      text-decoration: none;
+      font-family: 'Lucida Sans', sans-serif;
       font-size: 18px;
-      font-weight: bold;
-      padding: 10px;
-      border-radius: 8px;
-      background: #f1f9ff;
-      border: 1px solid #ddd;
+      padding: 8px 16px;
+      background-color: beige;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+    nav ul li a.active {
+  background-color: cornflowerblue;
+  color: white;
+}
+  nav ul li a:hover {
+      background-color: cornflowerblue;
     }
 
-    .info-box {
-      margin-top: 18px;
-      padding: 12px;
-      background: #f8f9fa;
-      border-radius: 10px;
-      font-size: 14px;
-      text-align: left;
-      color: #444;
-      border-left: 5px solid #3a7bd5;
+    .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%; /* was 140%, now directly under */
+  left: 0;
+  background-color: white;
+  min-width: 160px;
+  z-index: 1;
+}
+
+    .dropdown-content li a {
+      padding: 10px 15px;
+      display: block;
+      color: navy;
     }
 
-    /* Explanations Section */
-    .explanation {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      line-height: 1.6;
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
 
-    .explanation h3 {
-      margin-top: 0;
-      color: #3a7bd5;
-    }
+   .hero {
+  background-color: cadetblue;
+  padding: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-    .explanation p {
-      margin: 8px 0;
-    }
+.adopt-message {
+  flex: 1;
+  font-size: 24px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  max-width: 600px;
+  padding-left: 60px;
+  padding-bottom:125px; /* reduced from 200px */
+}
+
+.hero h2 {
+  font-size: 36px;
+  font-family: cursive;
+  margin-bottom: 15px;
+  color: white;
+  padding-top: 60px; /* reduced from 100px */
+}
+
+
+.dog-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 480px;
+  padding-top: 20px;
+}
+
+  .dog-photo, .cat-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dog-photo:hover, .cat-photo:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 25px 10px rgba(255, 140, 0, 0.8);
+}
+
+    .dog-photo img, .cat-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#contact {
+  padding: 60px;
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: 36px;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+#contact form {
+  max-width: 500px;
+  margin: auto;
+}
+
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+#contact button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact button:hover {
+  background-color: #333;
+}
+.breeds{
+    background-color: lightpink;
+    margin: 0;
+    padding: 0;
+}
+.breed-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.breed-card {
+  background: linear-gradient(135deg, lightblue,cornflowerblue);
+  border-radius: 20px;
+  padding: 25px;
+  width: 270px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s, box-shadow 0.4s;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.breed-card::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+  top: -50%;
+  left: -50%;
+  transform: rotate(25deg);
+  animation: glowmove 6s linear infinite;
+  z-index: 0;
+}
+
+@keyframes glowmove {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.breed-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.breed-card button {
+  margin-top: 10px;
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.breed-card button:hover {
+  background-color: #e55b2b;
+}
+.adopt-btn {
+  display: inline-block;
+  background-color: #ff9800;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.adopt-btn:hover {
+  background-color: #e68900;
+}
+
+
+.about-section {
+  background-color: #e0f7fa; /* soft teal background */
+  padding: 60px 80px;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex; /* make side-by-side layout */
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* space between text and image */
+  flex-direction: column;
+}
+
+.about-content {
+  flex: 1;
+  text-align: left; /* align text properly */
+}
+
+.about-section img {
+  flex: 1;
+  max-width: 100%;
+  height:300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.pet-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.adopt-section {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff8f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.adopt-section h2 {
+  text-align: center;
+  color: #ff6f61;
+  margin-bottom: 20px;
+}
+
+/* Smooth scrolling for link navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Adopt Form Section Styling */
+#adopt-form {
+  background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+  padding: 40px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Heading */
+#adopt-form h2 {
+  text-align: center;
+  color: #4CAF50;
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+/* Labels */
+#adopt-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input & Select Styling */
+#adopt-form input,
+#adopt-form select,
+#adopt-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Input focus effect */
+#adopt-form input:focus,
+#adopt-form select:focus,
+#adopt-form textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+}
+
+/* Submit Button */
+#adopt-form button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Button Hover Effect */
+#adopt-form button:hover {
+  background: linear-gradient(90deg, #45a049, #4CAF50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+}
+
+
   </style>
 </head>
+
 <body>
-  <!-- Top Bar -->
-  <div class="navbar">
-    🌐 Temperature Converter Project
-  </div>
 
-  <div class="container">
-    <!-- Converter -->
-    <div class="converter">
-      <h2>🌡️ Temperature Converter</h2>
+  <nav>
+    <h1>Take Me Home 🐕‍🦺</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#breeds">Breeds</a></li>
+      <li><a href="#adopt-form">Adopt</a></li>
+      <li><a href="#reason">Why Adopt?</a></li>
+    </ul>
+  </nav>
 
-      <input type="number" id="inputTemp" placeholder="Enter temperature">
-
-      <select id="inputUnit">
-        <option value="Celsius">Celsius (°C)</option>
-        <option value="Fahrenheit">Fahrenheit (°F)</option>
-        <option value="Kelvin">Kelvin (K)</option>
-      </select>
-
-      <select id="outputUnit">
-        <option value="Celsius">Celsius (°C)</option>
-        <option value="Fahrenheit">Fahrenheit (°F)</option>
-        <option value="Kelvin">Kelvin (K)</option>
-      </select>
-
-      <div class="actions">
-        <button class="convert-btn" onclick="convertTemp()">Convert</button>
-        <button class="swap-btn" onclick="swapUnits()">🔄 Swap</button>
-      </div>
-
-      <div class="result" id="result">Result will appear here</div>
-
-      <div class="info-box">
-        <h3>📘 Conversion Formulas:</h3>
-        <ul>
-          <li>°F = (°C × 9/5) + 32</li>
-          <li>°C = (°F − 32) × 5/9</li>
-          <li>K = °C + 273.15</li>
-        </ul>
-      </div>
+  <div class="hero">
+    <div class="adopt-message">
+      <h2>Find Your Forever Friends 🐶🐈</h2>
+      <p>
+        These loving dogs and cats are waiting for a home.<br>
+        Adopt and change a life – maybe your own too!
+      </p>
     </div>
+    
 
-    <!-- Explanation Section -->
-    <div class="explanation">
-      <h3>ℹ️ About Temperature Scales</h3>
-      <p><b>🌡 Celsius (°C):</b> Based on the freezing point (0°C) and boiling point (100°C) of water at sea level.</p>
-      <p><b>🔥 Fahrenheit (°F):</b> Commonly used in the USA. Water freezes at 32°F and boils at 212°F.</p>
-      <p><b>❄ Kelvin (K):</b> Scientific scale used worldwide. Absolute zero (0 K) is the coldest possible temperature.</p>
-      <p>👉 This converter helps you switch easily between these units for daily, academic, and scientific use.</p>
+    <div class="dog-gallery">
+<div class="cat-photo"><img src="images/cat 1.jpg" alt="Cute cat 1" /></div>
+<div class="cat-photo"><img src="images/cat 2.jpg" alt="Cute cat 2" /></div>
+<div class="dog-photo"><img src="images/dog 1.jpg" alt="Cute dog 1" /></div>
+<div class="dog-photo"><img src="images/dog 2.jpg" alt="Cute dog 2" /></div>
+<div class="dog-photo"><img src="images/dog 3.jpg" alt="Cute dog 3" /></div>
+
     </div>
   </div>
+  <section id="about" class="about-section">
+      <img src="images/1.avif" alt="About Us Image">
+  <div class="about-content">
+    <h2>About Us</h2>
+    <p>
+      Welcome to <strong>Take Me Home</strong> 🐾 – a heaven for homeless pets and a bridge to loving families. 
+      We are a team of animal lovers committed to making a difference. 
+      Our mission is to rescue, protect, and rehome animals in need.
+      <br><br>
+      By adopting, you’re not just giving a pet a home – you’re saving a life and gaining a loyal friend forever. ❤️
+    </p>
+  </div>
+</section>
 
-  <script>
-    function convertTemp() {
-      let temp = parseFloat(document.getElementById("inputTemp").value);
-      let inputUnit = document.getElementById("inputUnit").value;
-      let outputUnit = document.getElementById("outputUnit").value;
-      let result = document.getElementById("result");
-      let converted;
 
-      if (isNaN(temp)) {
-        result.innerHTML = "⚠️ Please enter a valid number!";
-        result.style.background = "#ffecec";
-        result.style.color = "#d32f2f";
-        return;
-      }
+  <section id="breeds" class="breed-section"style="padding: 60px; background-color:darkgrey; text-align: center;">
+  <h2 style="font-size: 36px; color:#f2f2f2; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Meet Our Lovely Pets</h2>
+  <div class="breed-container">
+        <div class="breed-card">
+      <img src="images/labrador.jpg" alt="Labrador">
+      <h3>Max</h3>
+      <p>Breed: Labrador Retriever</p>
+      <p>Friendly, active, and outgoing. Great with families and kids.</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
 
-      // Convert input to Celsius first
-      let celsius;
-      if (inputUnit === "Celsius") {
-        celsius = temp;
-      } else if (inputUnit === "Fahrenheit") {
-        celsius = (temp - 32) * 5 / 9;
-      } else if (inputUnit === "Kelvin") {
-        celsius = temp - 273.15;
-      }
+    <div class="breed-card">
+      <img src="images/beagle.jpg" alt="Beagle">
+      <h3>Buddy</h3>
+      <p>Breed: Beagle</p>
+      <p>Cheerful, curious, and gentle. Ideal for apartments and children.</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
 
-      // Convert Celsius to target unit
-      if (outputUnit === "Celsius") {
-        converted = celsius;
-      } else if (outputUnit === "Fahrenheit") {
-        converted = (celsius * 9 / 5) + 32;
-      } else if (outputUnit === "Kelvin") {
-        converted = celsius + 273.15;
-      }
+    <div class="breed-card">
+      <img src="images/german.jpg" alt="German Shepherd">
+      <h3>Cooper</h3>
+      <p>Breed: German Shepherd</p>
+      <p>Loyal, smart, and protective. Good as a guard and family dog.</p>
+    <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
 
-      result.innerHTML = `✅ ${temp} ${inputUnit} = ${converted.toFixed(2)} ${outputUnit}`;
-      result.style.background = "#e3fcec";
-      result.style.color = "#2e7d32";
-    }
+    <div class="breed-card">
+      <img src="images/shih-tzu.jpg" alt="Shih Tzu">
+      <h3>Bella</h3>
+      <p>Breed: Shih-tzu</p>
+      <p>Small, affectionate, and friendly. Perfect for cuddles and small homes.</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
 
-    function swapUnits() {
-      let inputUnit = document.getElementById("inputUnit");
-      let outputUnit = document.getElementById("outputUnit");
+    <!-- Cat Breeds -->
+    <div class="breed-card">
+      <img src="images/persian.jpg" alt="Persian Cat">
+      <h3>Milo</h3>
+      <p>Breed: Persian Cat</p> 
+      <p>Calm, quiet, and loving. Known for their long, luxurious coat.</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
 
-      // Swap selected values
-      let tempUnit = inputUnit.value;
-      inputUnit.value = outputUnit.value;
-      outputUnit.value = tempUnit;
-    }
-  </script>
+    <div class="breed-card">
+      <img src="images/siamese.jpg" alt="Siamese Cat">
+      <h3>Lily</h3>
+      <p>Breed: Siamese</p>
+      <p>Elegant, social, and vocal. Loves attention and bonding with people.</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
+
+    <div class="breed-card">
+      <img src="images/bengal.jpg" alt="Bengal Cat">
+      <h3>Cleo</h3>
+      <p>Breed: Bengal cat</p>
+      <p>Energetic and intelligent. Looks wild, but is affectionate and playful.</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
+    <div class="breed-card">
+      <img src="images/lab.jpg" alt="Charlie the Labrador">
+      <h3>Charlie</h3>
+      <p>Breed: Labrador Retriever</p>
+      <p>Loves children</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
+    <div class="breed-card">
+      <img src="images/pers.jpg" alt="Luna the Persian">
+      <h3>Luna</h3>
+      <p>Breed: Persian Cat</p>
+      <p>Very affectionate</p>
+      <a href="#adopt-form" class="adopt-btn">Adopt Now</a>
+    </div>
+
+
+  </div>
+</section>
+<section id="adopt-form">
+  <h2>Adopt a Pet</h2>
+  <form>
+    <!-- Pet Selection -->
+    <label for="pet-select">Select a Pet:</label>
+    <select id="pet-select" name="pet-select" required>
+      <option value="">-- Choose a Pet --</option>
+      <optgroup label="Dogs">
+        <option value="Buddy">Buddy</option>
+        <option value="Max">Max</option>
+        <option value="Bella">Bella</option>
+        <option value="Cooper">Cooper</option>
+        <option value="Charlie">Charlie</option>
+      </optgroup>
+      <optgroup label="Cats">
+        <option value="Whiskers">Whiskers</option>
+        <option value="Milo">Milo</option>
+        <option value="Cleo">Cleo</option>
+        <option value="Luna">Luna</option>
+      </optgroup>
+    </select>
+
+    <!-- Adopter Information -->
+    <label for="name">Your Full Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Enter your phone" required>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="3" placeholder="Enter your address" required></textarea>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit Adoption Request</button>
+  </form>
+</section>
+<section id="reason" style="background-color:#fff3e0; padding:50px; text-align:center; font-family: 'Segoe UI', sans-serif;">
+  <h2 style="font-size:36px; color:#ff6f61;">Why Adopt?</h2>
+  <p style="max-width:700px; margin:auto; font-size:18px;">
+    When you adopt, you save a precious life and make room for another animal in need.
+    You’ll gain a loyal companion while making a difference in the world.
+  </p>
+
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-top:30px;">
+    <div style="background:white; padding:20px; border-radius:10px; width:250px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+      <h3>🐾 Save a Life</h3>
+      <p>Every adoption gives a homeless pet a second chance.</p>
+    </div>
+    <div style="background:white; padding:20px; border-radius:10px; width:250px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+      <h3>💸 Affordable</h3>
+      <p>Adopting costs less than buying, and pets are often vaccinated & neutered.</p>
+    </div>
+    <div style="background:white; padding:20px; border-radius:10px; width:250px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+      <h3>♻ Stop Overbreeding</h3>
+      <p>Reduce the demand for puppy mills & irresponsible breeding.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: info@takemehome.com | Phone: +91-6374381590</p>
+  <p>Visit our shelter: 123, Pet Lane, Chennai</p>
+</section>
+
 </body>
+<footer style="background-color: black; color: white; text-align: center; padding: 20px;">
+  <p>© 2025 Take Me Home. All Rights Reserved.</p>
+  <p>Follow us on 
+    <a href="#" style="color: lightblue;">Instagram</a> | 
+    <a href="#" style="color: lightblue;">Facebook</a>
+  </p>
+</footer>
+
 </html>
