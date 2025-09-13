@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificates - My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #5604da, #db5b06, #20b902) no-repeat fixed;
+      background-size: cover;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .Internships h1 {
+      font-size: 45px;
+      padding-top: 78px;
+      margin-top: 10px;
+      margin-bottom: 60px;
+      text-shadow: 0 0 10px #ff0, 0 0 20px #f90, 0 0 30px #f00;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff0, 0 0 20px #f90, 0 0 30px #f00; }
+      to { text-shadow: 0 0 20px #0ff, 0 0 30px #0f0, 0 0 40px #00f; }
+    }
+
+    .page-stack {
+      width: 90%;
+      max-width: 350px;
+      height: 400px;
+      margin: auto;
+      perspective: 1200px; /* 3D depth */
+      position: relative;
+    }
+
+    /* Page / Card */
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 95%;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      cursor: pointer;
+      display: none; /* hide all by default */
+    }
+
+    .page.active {
+      display: block; /* show only active one */
+    }
+
+    .page-front,
+    .page-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      
+    }
+
+    /* Front side */
+    .page-front {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .page-front img {
+      width: 100%;
+      height: 250px;
+      padding-top: 30px;
+      object-fit: cover;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .page-front .info {
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff9800, #e91e63);
+      color: white;
+    }
+
+    /* Back side */
+    .page-back {
+      background: rgba(20, 20, 30, 0.85);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      color: #fff;
+      transform: rotateY(180deg);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1),
+                  0 0 20px rgba(0, 200, 255, 0.3);
+      animation: fadeIn 0.8s ease;
+    }
+
+    .page-back h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+      color: #ffcc00;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.7),
+                   0 0 20px rgba(255, 204, 0, 0.5);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 5px;
+    }
+
+    .page-back ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .page-back ul li {
+      background: linear-gradient(90deg, #ff9800, #e91e63);
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .page-back ul li:hover {
+      transform: translateX(5px) scale(1.03);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Flip effect */
+    .page.flipped {
+      transform: rotateY(180deg);
+    }
+
+    /* Hover Glow */
+    .page-front:hover {
+      box-shadow: 0 0 30px rgba(255,255,255,0.6), 0 0 60px rgba(255,0,150,0.5);
+      transform: scale(1.03);
+    }
+
+    .next-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 13px;
+  color: #ffcc00;
+  text-shadow: 0 0 8px #ff0;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+  </style>
+</head>
+<body>
+
+  
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="education.html">Education</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="skills.html">Skills</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="certification.html">Certification</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="internship.html">Internship</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="workshop.html">Workshop</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="project.html">Project</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="activities.html">Activities</a>
+
+  </div>
+
+  <section class="Internships">
+    <h1>🏆 Internships</h1>
+    <div class="page-stack">
+      
+      <!-- Page 1 -->
+      <div class="page active">
+        <div class="page-front">
+          <img src="images/codebind 1.jpg" alt="CodeBind Internship">
+          <div class="info">CodeBind Technologies - Web Development Internship (2023)</div>
+        </div>
+        <div class="page-back">
+          <div class="next-hint">➡ Next</div>
+          <h2>Skills Learned</h2>
+          <ul>
+            <li>Python Programming</li>
+            <li>Web Development Basics</li>
+            <li>Team Collaboration</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="page">
+        <div class="page-front">
+          <img src="images/Screenshot 2025-09-05 082139.png" alt="Oasys Infosys Internship">
+          <div class="info">Oasys Infosys - Web Development Internship (2025)</div>
+        </div>
+        <div class="page-back">
+          <div class="next-hint">➡ Next</div>
+          <h2>Skills Learned</h2>
+          <ul>
+            <li> Designed and structured web pages using HTML tags & semantic elements</li>
+            <li>Applied CSS styling for text, colors, and layouts</li>
+            <li>Built responsive designs with Flexbox, Grid, and media queries</li>
+            <li>Added visual effects using CSS transitions and animations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Page 3 -->
+      <div class="page">
+        <div class="page-front">
+                    <img src="images/Screenshot 2025-09-05 082208.png" alt="Main Flow Internship">
+          <div class="info">Main Flow Technology - Python Development Program (2025)</div>
+        </div>
+        <div class="page-back">
+          <div class="next-hint">➡ Next</div>
+          <h2>Skills Learned</h2>
+          <ul>
+            <li>Python Frameworks</li>
+            <li>Database Handling</li>
+            <li>Mini Projects</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Flip + Next Script -->
+  <script>
+    const pages = document.querySelectorAll('.page');
+    let currentIndex = 0;
+
+    function showPage(index) {
+      pages.forEach((p, i) => {
+        p.classList.remove('active', 'flipped');
+        if (i === index) {
+          p.classList.add('active');
+        }
+      });
+    }
+
+    pages.forEach((page, i) => {
+      page.addEventListener('click', () => {
+        if (!page.classList.contains('flipped')) {
+          page.classList.add('flipped'); // flip front → back
+        } else {
+          // go to next page
+          currentIndex = (currentIndex + 1) % pages.length;
+          showPage(currentIndex);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

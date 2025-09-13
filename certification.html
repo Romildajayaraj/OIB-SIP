@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certification - My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #9e016a, #f3a81d, #20b902);
+      color: white;
+      line-height: 2;
+    }
+
+    .certification {
+      margin-top: 140px;
+      text-align: center;
+    }
+
+    .certification h1 {
+      font-size: 40px;
+      margin-bottom: 50px;
+      color: #fab209;
+      text-shadow: 0 0 15px #252525;
+      text-shadow: 0 0 10px rgb(0, 255, 55), 0 0 20px rgb(55, 0, 255), 0 0 30px rgb(5, 5, 5);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgb(0, 255, 21), 0 0 20px rgb(0, 26, 255), 0 0 30px rgb(7, 7, 7); }
+      to { text-shadow: 0 0 20px #0ff, 0 0 30px #0f0, 0 0 40px #00f; }
+    }
+
+    /* Container */
+    .cert-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Always 2 cards per row */
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .cert-container {
+    grid-template-columns: 1fr; /* Stack cards in 1 column */
+  }
+}
+
+    /* Card */
+    .cert-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px #ffd369;
+    }
+
+    /* Certificate Image */
+    .cert-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .cert-card h2 {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #080808;
+    }
+
+    .cert-card p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #030303;
+    }
+
+    /* View button */
+    .cert-card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: #ffd369;
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .cert-card a:hover {
+      background: #ffb703;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="education.html">Education</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="skills.html">Skills</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="certification.html">Certification</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="internship.html">Internship</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="workshop.html">Workshop</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="project.html">Project</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="activities.html">Activities</a>
+  </div>
+
+<section class="certification">
+  <h1>🏆Certifications</h1>
+  <div class="cert-container">
+
+    <!-- Certification 1 -->
+         <div class="cert-card">
+      <img src="images/my first chatbot.png" alt="Chatbot Certificate">
+      <h2>My First Chatbot</h2>
+      <p>IBM SkillBuild</p>
+      <p>Completed: 2024</p>
+    </div>
+
+    <!-- Certification 2 -->
+     
+    <div class="cert-card">
+      <img src="images/mongodb pic.png" alt="MongoDB Certificate">
+      <h2>MongoDB Logging Basics</h2>
+      <p>MongoDB University</p>
+      <p>Completed: 2024</p>
+      <a href="images/mongoDB.pdf" target="_blank">View Certificate</a>
+    </div>
+
+     <!-- Certification 3 -->
+    <div class="cert-card">
+      <img src="images/Screenshot 2025-09-04 104537.png" alt="HTML Certificate">
+      <h2>HTML</h2>
+      <p>Infosys Springboard</p>
+      <p>Completed: 2024</p>
+      <a href="images/html infosys" target="_blank">View Certificate</a>
+    </div>
+    
+    <!-- Certification 4 -->
+    <div class="cert-card">
+      <img src="images/Screenshot 2025-09-04 104453.png" alt="CSS Certificate">
+      <h2>CSS</h2>
+      <p>Infosys Springboard</p>
+      <p>Completed: 2024</p>
+      <a href="images/css infosys" target="_blank">View Certificate</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

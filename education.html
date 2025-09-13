@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education - My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+        body {
+  margin: 0;
+  min-height: 100vh; /* full viewport height */
+   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0e99d4, #dd0d86);
+  background-repeat: no-repeat; /* stop repeating */
+  background-attachment: fixed; /* keeps it stretched */
+  background-size: cover; /* make it cover the whole page */
+  color: #000;
+  line-height: 2;
+}
+
+
+    .education {
+      margin-top: 140px;
+      text-align: center;
+    }
+
+    .education h1 {
+      font-size: 40px;
+      margin-bottom: 50px;
+      color: #b5d9db;
+      text-shadow: 0 0 15px #080808;
+      text-shadow: 0 0 10px #ff0, 0 0 20px #f90, 0 0 30px #f00;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff0, 0 0 20px #f90, 0 0 30px #f00; }
+      to { text-shadow: 0 0 20px #0ff, 0 0 30px #0f0, 0 0 40px #00f; }
+    }
+
+    .edu-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    /* Education Card */
+    /* Education Card with animated border */
+.edu-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 45px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 25px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Outer glowing border effect */
+.edu-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 3px; /* border thickness */
+  background: linear-gradient(270deg, #fc2104da, #03854494, #0c01a791);
+  background-size: 400% 400%;
+  animation: borderTravel 6s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);t
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 1;
+}
+
+/* Keep content above */
+.edu-info, .edu-card img {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animation for moving light */
+@keyframes borderTravel {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+    .edu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px #b5d9db;
+    }
+
+    /* Image with zoom effect */
+    .edu-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+      padding: 10px;
+      flex-shrink: 0;
+      transition: transform 0.4s ease-in-out; /* smooth zoom */
+    }
+
+    .edu-card img:hover {
+      transform: scale(1.2); /* zoom in */
+    }
+
+    /* Info */
+    .edu-info {
+      text-align: left;
+    }
+
+    .edu-info h2 {
+      margin: 0;
+      font-size: 22px;
+      color: #0f0f0f;
+    }
+
+    .edu-info h3 {
+      margin: 5px 0;
+      color: #111111;
+      font-size: 18px;
+    }
+
+    .edu-info p, .edu-info ul {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #050505;
+    }
+
+    .edu-info ul {
+      list-style-type: "📘 ";
+      padding-left: 20px;
+    }
+
+     /* Responsive */
+    @media (max-width: 768px) {
+      .edu-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .edu-info {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+      <div class="navbar">
+    <a href="index.html">Home</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="education.html">Education</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="skills.html">Skills</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="certification.html">Certification</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="internship.html">Internship</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="workshop.html">Workshop</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="project.html">Project</a>
+    <img src="images/arr.gif" class="img" alt="arrow">
+    <a href="activities.html">Activities</a>
+    
+  </div>
+  <section class="education">
+    <h1>🎓Education</h1>
+    <div class="edu-container">
+
+      <!-- College -->
+      <div class="edu-card">
+        <img src="images/college.jpeg" alt="College Logo">
+        <div class="edu-info">
+          <h2>B.Tech in Computer Science & Engineering</h2>
+          <h3>Dhanalakshmi Srinivasan University</h3>
+          <p>2022 – 2026</p>
+          <p><strong>CGPA:</strong> 8.5/10</p>
+        </div>
+      </div>
+
+      <!-- School (10th & 12th same) -->
+      <div class="edu-card">
+        <img src="images/school.jpeg" alt="School Logo">
+        <div class="edu-info">
+          <h2>Cauvery Global Senior Sec. School</h2>
+          <ul>
+            <li>Class XII (2019 – 2020) – 90%</li>
+            <li>Class X (2017 – 2018) – 92%</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Companion - Case Study</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0a0f, #1a1a2e);
+      color: #fff;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      text-align: center;
+      background: linear-gradient(90deg, #ff0, #f0f, #0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      margin-bottom: 70px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    section {
+      margin-bottom: 60px;
+      animation: fadeUp 1s ease-in-out;
+    }
+
+    section h2 {
+      font-size: 28px;
+      color: #00ffcc;
+      margin-bottom: 15px;
+      border-left: 6px solid #00ffcc;
+      padding-left: 12px;
+      text-shadow: 0 0 10px #00ffd5;
+    }
+
+    section p, li {
+      font-size: 18px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .features li::before {
+      content: "✔️ ";
+    }
+
+    /* Tech stack styling */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+    }
+
+    .tech {
+      background: rgba(34, 34, 34, 0.85);
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,200,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tech:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 25px rgba(0,255,200,0.6);
+    }
+
+    /* Video styling */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0,255,200,0.5);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+    }
+
+    /* Back button */
+    .back {
+      display: block;
+      margin: 50px auto 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(90deg, #6c54f0, #00ffcc);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .back:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff0;
+      color: #000;
+    }
+
+    /* Divider line */
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00ffcc, transparent);
+      margin: 40px 0;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Subtle starry background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.15;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌙 Night Companion – A Telegram Bot for Women’s Safety</h1>
+
+    <section>
+      <h2>🔹 Overview</h2>
+      <p>Night Companion is a Telegram bot designed for women’s safety, offering real-time support, location tracking, and emergency assistance. It ensures that women feel safer while traveling alone at night.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>🔹 Problem Statement</h2>
+      <p>Women’s safety during late-night travel is still a major concern. Many safety apps are complex or require multiple steps in emergencies. This project addresses the gap by offering an instant-access solution directly on Telegram.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>🔹 Key Features</h2>
+      <ul class="features">
+        <li>📍 Live Location Sharing</li>
+        <li>🚨 SOS Alerts with Location</li>
+        <li>🤖 Chatbot Assistance for emergency helplines</li>
+        <li>🕒 Check-in System to confirm user safety</li>
+        <li>🔒 Privacy-focused with minimal data</li>
+      </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>🔹 Tech Stack</h2>
+      <div class="tech-stack">
+        <div class="tech">🐍 Python</div>
+        <div class="tech">📲 Telegram Bot API</div>
+        <div class="tech">☁️ Hosting: Heroku / PythonAnywhere</div>
+        <div class="tech">🔧 Libraries: python-telegram-bot, requests, geopy</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>🔹 My Role</h2>
+      <p>I designed the bot’s workflow, implemented the SOS alert & location-sharing feature in Python, tested with real scenarios, and ensured the bot was easy to use inside Telegram.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>🔹 Outcome & Impact</h2>
+      <p>The bot was successfully developed and tested, improving safety confidence for women at night. It enhanced my skills in Python, APIs, and real-world problem-solving.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+      <h2>🔹 Demo Video</h2>
+      <div class="video-container">
+        <video controls width="800" height="450" poster="vedio/2.mp4">
+          <source src="vedio/2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <a href="project.html" class="back">⬅ Back to Projects</a>
+  </div>
+</body>
+</html>
